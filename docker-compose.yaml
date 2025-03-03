@@ -1,6 +1,6 @@
 services:
   scam-bank-gateway:
-    image: scam-bank-gateway:latest
+    image: microseversk/scam-bank-gateway:latest
     build: .
     container_name: scam-bank-gateway
     ports:
