@@ -2,7 +2,7 @@ import { All, Controller, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { createProxyMiddleware, RequestHandler } from 'http-proxy-middleware';
 
-@Controller('gateway')
+@Controller()
 export class GatewayController {
   private proxies = {
     core: `http://localhost:3000`,
@@ -18,13 +18,13 @@ export class GatewayController {
         target,
         changeOrigin: true,
         pathRewrite: {
-          [`^/gateway/${service}`]: '',
+          [`^/gateway/`]: '',
         },
       });
     });
   }
 
-  @All('*')
+  @All('gateway/:service/*')
   proxy(@Req() req: Request, @Res() res: Response) {
     const parts = req.path.split('/').filter(Boolean);
     const serviceName = parts[1];
