@@ -1,0 +1,9 @@
+services:
+  scam-bank-gateway:
+    image: scam-bank-gateway:latest
+    build: .
+    container_name: scam-bank-gateway
+    ports:
+      - '4000:4000'
+    environment:
+      - PORT=4000
