@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ScamBank/scam-bank-gateway.git'
+                git branch: 'master', url: 'https://github.com/ScamBank/scam-bank-gateway.git'
             }
         }
 
