@@ -4,9 +4,11 @@ import { createProxyMiddleware, RequestHandler } from 'http-proxy-middleware';
 
 @Controller()
 export class GatewayController {
+  private host =
+    process.env.EXEC_ENV === 'production' ? '45.130.146.135' : 'localhost';
   private proxies = {
-    core: `http://localhost:3000`,
-    users: 'http://localhost:3001',
+    core: `http://${this.host}:3000`,
+    users: `http://${this.host}:3001`,
   };
 
   private proxyMiddlewares: Record<string, RequestHandler>;
