@@ -18,7 +18,7 @@ export class GatewayController {
         target,
         changeOrigin: true,
         pathRewrite: {
-          [`^/gateway/`]: '',
+          [`^/gateway`]: '',
         },
       });
     });
