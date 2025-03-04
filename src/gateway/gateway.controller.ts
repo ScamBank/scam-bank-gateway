@@ -26,18 +26,18 @@ export class GatewayController {
     });
   }
 
-  @All('gateway/:service/*')
+  @All('*')
   proxy(@Req() req: Request, @Res() res: Response) {
     const parts = req.path.split('/').filter(Boolean);
     const serviceName = parts[1];
 
     const proxyMiddleware = this.proxyMiddlewares[serviceName];
     if (!proxyMiddleware) {
-      return res.status(404).json({ message: 'Service not found' });
+      return res.status(404).json({ message: `Service not found ${req.url}` });
     }
 
     console.log(
-      `Proxying request to service: ${serviceName}, path: ${req.path}`,
+      `Proxying request to service: ${serviceName}, path: ${req.url}`,
     );
     return proxyMiddleware(req, res, () => {});
   }
