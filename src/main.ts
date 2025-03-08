@@ -18,6 +18,7 @@ async function bootstrap() {
   app.use('/api/users', proxy(proxies.users));
   app.use('/api/core', proxy(proxies.core));
   app.use('/api/users1c', proxy(proxies.users1c));
+  app.use('/api/core1c', proxy(proxies.users1c));
 
   await app.listen(process.env.PORT ?? 4000);
   console.log(`Gateway is running on port ${process.env.PORT ?? 4000}`);
